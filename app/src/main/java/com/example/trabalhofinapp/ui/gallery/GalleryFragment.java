@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -169,8 +170,7 @@ public class GalleryFragment extends Fragment {
 
     private String getConversion(String convertFromValue, String convertToValue, Double amountToConvert) {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = "https://free.currconv.com/api/v7/convert?q=" + convertFromValue + "_"
-                + convertToValue + "&compact=ultra&apiKey=" + API_KEY;
+        String url = "https://free.currconv.com/api/v7/convert?q=" + convertFromValue + "_" + convertToValue + "&compact=ultra&apiKey=" + API_KEY;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -189,7 +189,7 @@ public class GalleryFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(getContext(), "Erro na requisição de câmbio", Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(stringRequest);
