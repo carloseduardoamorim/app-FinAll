@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#303234"
+    android:background="@color/black_shade_1"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
+    android:id="@+id/galleryFragment"
     tools:context=".ui.gallery.GalleryFragment">
 
     <androidx.cardview.widget.CardView
@@ -19,6 +20,7 @@
         android:layout_marginEnd="10dp"
         android:clickable="true"
         android:focusable="true"
+        app:cardElevation="4dp"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
@@ -94,10 +96,10 @@
                         android:id="@+id/convert_to_dropdown_menu"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@android:drawable/editbox_background"
+                        android:background="@color/gray_shade_1"
                         android:layout_weight="1.0"
                         android:hint="@string/selecioneP"
-                        android:text=""
+                        android:textColorHint="@color/preto"
                         android:textColor="@color/preto"
                         android:gravity="center"
                         android:textSize="13dp"
