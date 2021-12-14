@@ -16,12 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:clickable="true"
         android:focusable="true"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="10dp">
+        android:background="@color/gray_shade_2"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:id="@+id/masterLinearLayout"
@@ -53,10 +53,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1.0"
                         android:text="Converter De"
-                        android:textColor="#000000"
-                        android:layout_marginLeft="10dp" />
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/convertToTitulo"
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="Converter Para"
-                        android:textColor="#000000"/>
+                        android:textColor="#000000" />
 
 
                 </LinearLayout>
@@ -80,31 +80,31 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:background="@color/gray_shade_1"
                         android:layout_weight="1.0"
+                        android:background="@color/gray_shade_1"
+                        android:gravity="center"
                         android:hint="@string/selecioneP"
-                        android:textColorHint="@color/preto"
                         android:text=""
                         android:textColor="#000000"
-                        android:gravity="center"
+                        android:textColorHint="@color/preto"
                         android:textSize="13dp"
                         app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
-                        app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"/>
+                        app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
 
                     <TextView
                         android:id="@+id/convert_to_dropdown_menu"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/gray_shade_1"
                         android:layout_weight="1.0"
-                        android:hint="@string/selecioneP"
-                        android:textColorHint="@color/preto"
-                        android:textColor="@color/preto"
+                        android:background="@color/gray_shade_1"
                         android:gravity="center"
+                        android:hint="@string/selecioneP"
+                        android:textColor="@color/preto"
+                        android:textColorHint="@color/preto"
                         android:textSize="13dp"
                         app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
-                        app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"/>
+                        app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
                 </LinearLayout>
 
@@ -131,10 +131,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1.0"
                         android:text="Valor a Converter"
-                        android:textColor="@color/preto"
-                        android:layout_marginLeft="10dp" />
+                        android:textColor="@color/preto" />
 
                     <TextView
                         android:id="@+id/conversionRateResult"
@@ -143,7 +143,7 @@
                         android:layout_weight="1.0"
                         android:gravity="center"
                         android:text="Valor Convertido"
-                        android:textColor="@color/preto"/>
+                        android:textColor="@color/preto" />
 
                 </LinearLayout>
 
@@ -158,14 +158,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1.0"
                         android:hint="Digite"
                         android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textColor="@color/preto"
-                        android:textSize="14sp"
-                        android:layout_marginLeft="10dp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/conversionRateText"
@@ -174,7 +174,7 @@
                         android:layout_weight="1.0"
                         android:gravity="center"
                         android:textColor="@color/preto"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
 
 
@@ -184,16 +184,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:gravity="center"
                 android:paddingTop="20sp">
 
                 <Button
                     android:id="@+id/conversionButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:paddingTop="7dp"
                     android:paddingBottom="7dp"
-                    android:text="converter"/>
+                    android:textColor="@color/white"
+                    android:text="converter" />
 
             </RelativeLayout>
 
@@ -202,6 +203,36 @@
 
 
     </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_marginTop="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_view"
+        android:id="@+id/linerLayoutButtons"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/gmailButton"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_gmail"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/whatsAppButton"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_whatsapp"/>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

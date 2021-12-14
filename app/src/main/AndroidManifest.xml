@@ -8,13 +8,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_cripto"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_cripto"
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabalhoFinApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AlarmActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

@@ -20,15 +20,9 @@ import com.example.trabalhofinapp.ui.gallery.GalleryFragment;
 import com.example.trabalhofinapp.ui.slideshow.SlideshowFragment;
 
 public class HomeFragment extends Fragment {
-    private Button buttonCambio, buttonCripto;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        buttonCambio = root.findViewById(R.id.buttonCambio);
-        buttonCripto = root.findViewById(R.id.buttonCripto);
-
 
         return root;
     }

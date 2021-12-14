@@ -1,6 +1,7 @@
 package com.example.trabalhofinapp.ui.gallery;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class GalleryFragment extends Fragment {
     private Dialog fromDialog;
     private Dialog toDialog;
     private Button convertButton;
+    private ImageButton gmailButton, whatsAppButton;
     private String convertFromValue, convertToValue, conversionValue;
     private String[] country = {"JPY", "CNY", "SDG", "RON", "MKD", "MXN", "CAD",
             "ZAR", "AUD", "NOK", "ILS", "ISK", "SYP", "LYD", "UYU", "YER", "CSD",
@@ -62,7 +65,11 @@ public class GalleryFragment extends Fragment {
 
         convertFromDropdownTextView = root.findViewById(R.id.convert_from_dropdown_menu);//getView().findViewById(R.id.convert_from_dropdown_menu);
         convertToDropdownTextView = root.findViewById(R.id.convert_to_dropdown_menu);
+
         convertButton = root.findViewById(R.id.conversionButton);
+        gmailButton = root.findViewById(R.id.gmailButton);
+        whatsAppButton = root.findViewById(R.id.whatsAppButton);
+
         conversionRateText = root.findViewById(R.id.conversionRateText);
         amountToConvert = root.findViewById(R.id.amountToConvertEditText);
 
@@ -88,7 +95,6 @@ public class GalleryFragment extends Fragment {
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
                     }
 
                     @Override
@@ -97,9 +103,7 @@ public class GalleryFragment extends Fragment {
                     }
 
                     @Override
-                    public void afterTextChanged(Editable editable) {
-
-                    }
+                    public void afterTextChanged(Editable editable) {}
                 });
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -160,7 +164,7 @@ public class GalleryFragment extends Fragment {
                     getConversion(convertFromValue, convertToValue, amountToConvert);
 
                 } catch (Exception e){
-
+                    e.printStackTrace();
                 }
             }
         });
@@ -173,6 +177,7 @@ public class GalleryFragment extends Fragment {
         String url = "https://free.currconv.com/api/v7/convert?q=" + convertFromValue + "_" + convertToValue + "&compact=ultra&apiKey=" + API_KEY;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            Intent intent = null;
             @Override
             public void onResponse(String response) {
                 try {
@@ -181,6 +186,39 @@ public class GalleryFragment extends Fragment {
                     Double conversionRateValue = round(((Double) jsonObject.get(convertFromValue + "_" + convertToValue)), 4);
                     conversionValue = "" + round((conversionRateValue * amountToConvert), 3);
                     conversionRateText.setText(conversionValue);
+
+                    gmailButton.setVisibility(View.VISIBLE);
+                    whatsAppButton.setVisibility(View.VISIBLE);
+
+                    String mensagem = "A conversão de " + amountToConvert + " " + convertFromValue +
+                            " para " + convertToValue + " é igual a: " + conversionValue;
+
+                    gmailButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String email = "carlos.fontes@estudante.ifto.edu.br";
+                            String subject = "Conversão feita com o App FinAll";
+                            intent = new Intent(Intent.ACTION_SEND);
+                            intent.putExtra(Intent.EXTRA_EMAIL, email);
+                            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                            intent.putExtra(Intent.EXTRA_TEXT, mensagem);
+                            intent.setType("text/plain");
+                            intent.setPackage("com.google.android.gm");
+                            startActivity(intent);
+                        }
+                    });
+
+                    whatsAppButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            intent = new Intent();
+                            intent.setAction(Intent.ACTION_SEND);
+                            intent.putExtra(Intent.EXTRA_TEXT, mensagem);
+                            intent.setType("text/plain");
+                            intent.setPackage("com.whatsapp");
+                            startActivity(intent);
+                        }
+                    });
 
                 } catch (JSONException e) {
                     e.printStackTrace();
